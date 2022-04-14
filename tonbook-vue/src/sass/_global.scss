@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Tenor+Sans&display=swap');
+
+
+//  variables
+//    colors
+$primaryC : #c38227d9;
+$secondaryC : #93a8ac;
+$tertiaryC : #d7ceb2;
+$fontC : #FFF;
+
+//    fonts
+$poppins : 'Poppins', sans-serif;
+$tenor : 'Tenor Sans', sans-serif;
+
+
+// mixins
+@mixin d-flex($d:row,$jc:center,$ai:center) {
+  display: flex;
+  flex-direction: $d;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
