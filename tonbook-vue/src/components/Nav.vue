@@ -8,7 +8,7 @@
         <router-link to="/">Offres</router-link>
       </li>
       <li>
-        <router-link to="/">Demandes</router-link>
+        <router-link to="/demands">Demandes</router-link>
       </li>
       
     </ul>

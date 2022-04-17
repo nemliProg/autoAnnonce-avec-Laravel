@@ -1,0 +1,31 @@
+CREATE DATABASE tonbook;
+
+USE tonbook ;
+
+
+CREATE TABLE user (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nom VARCHAR(50) NOT NULL,
+  prenom VARCHAR(50) NOT NULL,
+  tel VARCHAR(20) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  pw VARCHAR(255) NOT NULL,
+);
+
+
+CREATE TABLE offer (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  _description VARCHAR(255) NOT NULL,
+  photo VARCHAR(255) NOT NULL,
+  idUser INT ,
+  prix FLOAT NOT NULL,
+  CONSTRAINT fk_offer_user FOREIGN KEY (idUser) REFERENCES user(id)
+);
+
+CREATE TABLE demand (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  _description VARCHAR(255) NOT NULL,
+  photo VARCHAR(255) NOT NULL,
+  idUser INT , 
+  CONSTRAINT fk_demand_user FOREIGN KEY (idUser) REFERENCES user(id)
+);
