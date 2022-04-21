@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OfferController extends Controller
 {
@@ -14,7 +16,8 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return Offer::all();
+        $offers = Offer::with('user:id,nom,prenom,tel')->orderBy('id', 'DESC')->get();
+        return $offers;
     }
 
     /**
@@ -67,7 +70,7 @@ class OfferController extends Controller
             'idUser' => $idUser,
         ]);
 
-        return $offer;
+        return Offer::with('user:id,nom,prenom,tel')->find($offer->id);
     }
 
     /**

@@ -19,15 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// test bara
+Route::get('/offer', [OfferController::class, 'index']);
+Route::get('/demand', [demandController::class, 'index']);
 
 
 // user register
 Route::post('/register', [UserController::class, 'register']);
 // user login
 Route::post('/login', [UserController::class, 'login']);
-
-
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -47,14 +47,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // user logout
     Route::post('/logout', [UserController::class, 'logout']);
 
-    Route::get('/offer', [OfferController::class, 'index']);
+    // Route::get('/offer', [OfferController::class, 'index']);
     Route::get('/offer/{id}', [OfferController::class, 'show']);
     Route::get('/offer/search/{title}', [OfferController::class, 'search']);
     Route::post('/offer', [OfferController::class, 'store']);
     Route::post('/offer/{id}', [OfferController::class, 'update']);
     Route::delete('/offer/{id}', [OfferController::class, 'destroy']);
 
-    Route::get('/demand', [demandController::class, 'index']);
+    // Route::get('/demand', [demandController::class, 'index']);
     Route::get('/demand/{id}', [demandController::class, 'show']);
     Route::get('/demand/search/{title}', [demandController::class, 'search']);
     Route::post('/demand', [demandController::class, 'store']);

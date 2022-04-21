@@ -3,27 +3,50 @@
     <div class="logo-holder">
       <router-link to="/">tonBook</router-link>
     </div>
-    <ul>
-      <li >
+    <ul v-if="isLoggedIn">
+      <li>
         <router-link to="/">Offres</router-link>
       </li>
-      <li>
+      <li >
         <router-link to="/demands">Demandes</router-link>
       </li>
-      
+      <li>
+        <router-link @click="logout"  to="/auth">logout</router-link>
+      </li>
+    </ul>
+    <ul v-else>
+      <li>
+        <router-link to="/auth">Authentification</router-link>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Nav",
+  methods: {},
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState({
+      isLoggedIn: (state) => state.isLoggedIn,
+    }),
+  },
+  methods: {
+    logout() {
+      localStorage.clear();
+      this.$store.dispatch("setIsLoggedIn", false);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 nav {
-  @include d-flex(row,space-between);
+  @include d-flex(row, space-between);
   height: 45px;
   background-color: $primaryC;
   padding: 5px 20%;

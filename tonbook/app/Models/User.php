@@ -25,6 +25,16 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+    public function demands()
+    {
+        return $this->hasMany(Demand::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,4 +53,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-y h:i');
+    }
+    
+    public function getUpdatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-y h:i');
+    }
 }

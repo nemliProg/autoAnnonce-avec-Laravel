@@ -24,6 +24,7 @@ export default {
     width: 50%;
     margin: auto;
     @include d-flex;
+    text-align: center;
     background-color: $secondaryC;
     border-radius: 20px;
     color: $fontC;

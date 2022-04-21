@@ -14,7 +14,9 @@ class DemandController extends Controller
      */
     public function index()
     {
-        return Demand::all();
+        $demands = Demand::with('user:id,nom,prenom,tel')->get();
+
+        return $demands;
     }
 
     /**

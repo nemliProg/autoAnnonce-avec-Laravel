@@ -3,18 +3,20 @@
     <div class="login-form">
       <div class="heading">Login to your <b>Account</b></div>
       <div class="input-box">
-        <form action="" method="post">
+        <form @submit.prevent="login">
           <input
-            type="text"
+            type="email"
             class="input"
             placeholder="Your Email address..."
             required
+            v-model="email"
           />
           <input
             type="password"
             class="input"
             placeholder="Your password..."
             required
+            v-model="password"
           />
           <input type="submit" class="submit" value="login" />
         </form>
@@ -35,11 +37,46 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
   name: "Login",
   props : {
     toggle : Boolean,
     toFunc : Function
+  },
+  data(){
+    return {
+      email : '',
+      password : ''
+
+    }
+  },
+  methods :{
+    async login() {
+      let config = {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      };
+
+      axios
+        .post("http://tonbook.io/api/login", {
+          email: this.email,
+          password: this.password
+        }, config)
+        .then((response) => {
+          let data = response.data;
+          window.localStorage.setItem('token',data.token)
+          window.localStorage.setItem('id',data.user.id)
+          console.log(data);
+          this.$router.push({path: '/'});
+          this.$store.dispatch("setIsLoggedIn", true);
+
+        })
+        .catch((err) => console.log(err));
+    }
   }
 };
 </script>

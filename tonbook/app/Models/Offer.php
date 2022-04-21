@@ -17,4 +17,20 @@ class Offer extends Model
         'idUser',
         'prix',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, "idUser");
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-y h:i');
+    }
+    
+    public function getUpdatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-y h:i');
+    }
+
 }

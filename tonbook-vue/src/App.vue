@@ -13,6 +13,13 @@ export default {
     Nav,
     Footer,
   },
+  mounted(){
+    if (localStorage.getItem('token') !== null) {
+          this.$store.dispatch("setIsLoggedIn", true);
+    }else {
+      this.$router.push({name : 'auth'})
+    }
+  }
 };
 </script>
 
@@ -23,7 +30,5 @@ export default {
   box-sizing: border-box;
   font-family: $poppins;
 }
-body {
-  background-image: url("./assets/bgs/authBG.jpg");
-}
+
 </style>
